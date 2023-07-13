@@ -1,5 +1,6 @@
 # SponsorList
-[曉K爱发电](https://afdian.net/a/SunRyK)
+[戳我跳转至曉K爱发电](https://afdian.net/a/SunRyK)
+<br>
 **本项目遵循[MIT](./LICENSE)开源协议**
 ## 赞助者感谢名单
 *阅前须知*
