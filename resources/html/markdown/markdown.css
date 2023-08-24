@@ -3,11 +3,13 @@
     src: url("../../font/HYWenHei-85W.ttf");
   }
   body {
+    font-family: "HYWenHei-85W", sans-serif;
     background: url("https://api.gmit.vip/Api/DmImg?format=image") white center top no-repeat;
     background-size: cover;
     padding: 10px 20px;
   }
   .box {
+    font-family: "HYWenHei-85W", sans-serif;
     padding: 10px;
     background: rgba(255, 255, 255, 0.45);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
