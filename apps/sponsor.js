@@ -1,7 +1,6 @@
-const htmlDir = `../resources/html/markdown/`
-const tplFile = `${htmlDir}markdown.html`
-
 const _path = process.cwd()
+const htmlDir = `${_path}/resources/html/markdown/`
+const tplFile = `${htmlDir}markdown.html`
 
 export class sponsor extends plugin {
   constructor() {
