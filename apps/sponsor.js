@@ -25,7 +25,7 @@ export class sponsor extends plugin {
 
   async sponsorList() {
     const mdFile = `${_path}/plugins/SponsorList/README.md`
-    logger.debug(`[SponsorList] 查看：${logger.blue(msg)}`)
+    logger.debug(`[SponsorList] 查看：${logger.blue(mdFile)}`)
     if (!(fs.existsSync(mdFile) && fs.statSync(mdFile).isFile())) {
       await this.reply("无法查看，请检查是否存在README.md", true)
       return false
