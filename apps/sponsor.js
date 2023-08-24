@@ -1,5 +1,5 @@
-const _path = process.cwd()
-const htmlDir = `${_path}/resources/html/markdown/`
+const _path = process.cwd().replace(/\\/, '/')
+const htmlDir = `${_path}/plugins/SponsorList/resources/html/markdown/`
 const tplFile = `${htmlDir}markdown.html`
 
 export class sponsor extends plugin {
