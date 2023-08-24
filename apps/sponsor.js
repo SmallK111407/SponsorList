@@ -1,4 +1,4 @@
-const htmlDir = `../resources/markdown/`
+const htmlDir = `../resources/html/markdown/`
 const tplFile = `${htmlDir}markdown.html`
 
 const _path = process.cwd()
