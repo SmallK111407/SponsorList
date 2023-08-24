@@ -1,4 +1,4 @@
-const _path = process.cwd().replace(/\\/, '/')
+const _path = process.cwd().replace(/\\/g, '/')
 const htmlDir = `${_path}/plugins/SponsorList/resources/html/markdown/`
 const tplFile = `${htmlDir}markdown.html`
 
