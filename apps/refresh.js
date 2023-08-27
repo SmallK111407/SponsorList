@@ -23,21 +23,20 @@ export class refresh extends plugin {
         if (!this.e.isMaster) { return true }
         const SponsorList = path.join(`${_path}/plugins`, `SponsorList`)
         await this.e.reply(`正在尝试更新赞助名单...`)
-        const cmd = `git pull`
-        const options = {
-            cwd: SponsorList
-        };
-        execSync(cmd, options), function (error, stdout, stderr) {
+        try {
+            const cmd = `git pull`;
+            const options = {
+                cwd: SponsorList
+            };
+            const stdout = execSync(cmd, options).toString();
             if (/(Already up[ -]to[ -]date|已经是最新的)/.test(stdout)) {
-                this.e.reply('目前已经是最新的赞助名单了~')
-                return true
+                this.e.reply('目前已经是最新的赞助名单了~');
+            } else {
+                this.e.reply(`赞助名单更新成功！`);
             }
-            if (error) {
-                this.e.reply('赞助名单刷新失败！\nError code: ' + error.code + '\n' + error.stack + '\n 请稍后重试。')
-                return true
-            }
-            this.e.reply(`赞助名单更新成功！`)
-            return true
+        } catch (error) {
+            this.e.reply('赞助名单刷新失败！\nError: ' + error.toString() + '\n请稍后重试。');
         }
+        return true;
     }
 }
