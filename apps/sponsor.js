@@ -5,7 +5,7 @@ const tplFile = `${htmlDir}markdown.html`
 export class sponsor extends plugin {
   constructor() {
     super({
-      name: "sponsor",
+      name: "[SponsorList]sponsor",
       dsc: "sponsor",
       event: "message",
       priority: 10,
