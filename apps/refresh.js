@@ -20,7 +20,6 @@ export class refresh extends plugin {
         })
     }
     async refresh() {
-        if (!this.e.isMaster) { return true }
         const SponsorList = path.join(`${_path}/plugins`, `SponsorList`)
         await this.e.reply(`正在尝试更新赞助名单...`)
         try {
