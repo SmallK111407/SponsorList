@@ -15,7 +15,7 @@ export class sponsor extends plugin {
           fnc: "sponsorList"
         },
         {
-          reg: "^#?(我要|我想)?(赞助|资助)$",
+          reg: "^#?(我要|我想)?(赞助|资助|zz)$",
           fnc: "sponsorImage"
         }
       ]
