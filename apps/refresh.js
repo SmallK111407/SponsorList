@@ -7,7 +7,7 @@ const _path = process.cwd()
 export class refresh extends plugin {
     constructor() {
         super({
-            name: '[SponsorList]refresh',
+            name: 'refresh',
             dsc: 'refresh',
             event: 'message',
             priority: 10,
