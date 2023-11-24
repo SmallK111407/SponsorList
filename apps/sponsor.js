@@ -23,7 +23,7 @@ export class sponsor extends plugin {
   }
 
   async sponsorList() {
-    await this.e.reply(`赞助名单生成中...若长时间未发送可访问\nhttps://gitee.com/SmallK111407/SponsorList/blob/main/resources/readme/README.md\n查看`, true)
+    await this.e.reply(`赞助名单生成中...若长时间未发送可访问\nhttps://gitee.com/SmallK111407/SponsorList/blob/main/resources/readme/README.md\n查看\n若不是最新的名单可发送【#刷新赞助名单】`, true)
     const mdFile = `${_path}/plugins/SponsorList/resources/readme/README.md`
     logger.debug(`[SponsorList] 查看：${logger.blue(mdFile)}`)
     if (!(fs.existsSync(mdFile) && fs.statSync(mdFile).isFile())) {
