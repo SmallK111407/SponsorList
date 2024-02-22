@@ -6,6 +6,14 @@
 
 **本项目遵循[MIT](./LICENSE)开源协议**
 
+## 赞助渠道
+
+<p align="center">
+  <a href="../../../../SmallK111407/SponsorList"><img src="./resources/image/sponsor.png" width="100%" height="100%" alt="SponsorList"></a>
+</p>
+
+<div align="center">
+
 ## 赞助者感谢名单
 *阅前须知*
 
