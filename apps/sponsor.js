@@ -36,10 +36,10 @@ export class sponsor extends plugin {
   }
   async sponsorImage() {
     if (this.e.msg.includes("英")) {
-      await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/sponsor_en.png`), { recallMsg: 90 })
+      await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/sponsor_en.png`), false, { recallMsg: 90 })
       return true
     } else {
-      await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/sponsor.png`), { recallMsg: 90 })
+      await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/sponsor.png`), false, { recallMsg: 90 })
       return true
     }
   }
