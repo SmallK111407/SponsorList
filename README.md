@@ -9,7 +9,7 @@
 ## 赞助渠道
 
 <p align="center">
-  <a href="../../../../SmallK111407/SponsorList"><img src="./resources/image/sponsor.png" width="100%" height="100%" alt="SponsorList"></a>
+  <img src="./resources/image/sponsor.png" width="100%" height="100%" alt="SponsorList"></a>
 </p>
 
 ## 赞助者感谢名单
