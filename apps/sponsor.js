@@ -15,7 +15,7 @@ export class sponsor extends plugin {
           fnc: "sponsorList"
         },
         {
-          reg: "^#?(我要|我想)?(赞助|资助|zz)$",
+          reg: "^#?(我要|我想)?(赞助|资助|zz)(英|英语)?$",
           fnc: "sponsorImage"
         }
       ]
@@ -23,7 +23,7 @@ export class sponsor extends plugin {
   }
 
   async sponsorList() {
-    await this.e.reply(`赞助名单生成中...若长时间未发送可访问以下链接查看\nhttps://gitee.com/SmallK111407/SponsorList/blob/main/resources/readme/README.md\n若不是最新的名单可发送【#刷新赞助名单】`, true, {recallMsg: 30})
+    await this.e.reply(`赞助名单生成中...若长时间未发送可访问以下链接查看\nhttps://gitee.com/SmallK111407/SponsorList/blob/main/resources/readme/README.md\n若不是最新的名单可发送【#刷新赞助名单】`, true, { recallMsg: 30 })
     const mdFile = `${_path}/plugins/SponsorList/resources/readme/README.md`
     logger.debug(`[SponsorList] 查看：${logger.blue(mdFile)}`)
     if (!(fs.existsSync(mdFile) && fs.statSync(mdFile).isFile())) {
@@ -35,7 +35,12 @@ export class sponsor extends plugin {
     await this.reply(img, true)
   }
   async sponsorImage() {
-    await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/sponsor.png`), {recallMsg: 90})
-    return true
+    if (this.e.msg.includes("英")) {
+      await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/sponsor_en.png`), { recallMsg: 90 })
+      return true
+    } else {
+      await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/sponsor.png`), { recallMsg: 90 })
+      return true
+    }
   }
 }
