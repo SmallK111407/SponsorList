@@ -15,7 +15,7 @@ export class sponsor extends plugin {
           fnc: "sponsorList"
         },
         {
-          reg: "^#?(我要|我想)?(赞助|资助|zz)(英|英语)?$",
+          reg: "^#?(我要|我想)?(赞助|资助|zz)(旧|旧版)?(英|英语)?$",
           fnc: "sponsorImage"
         }
       ]
@@ -35,8 +35,11 @@ export class sponsor extends plugin {
     await this.reply(img, true)
   }
   async sponsorImage() {
-    if (this.e.msg.includes("英")) {
-      await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/sponsor_en.png`), false, { recallMsg: 90 })
+    if (this.e.msg.includes("英") || (this.e.msg.includes("英") && this.e.msg.includes("旧"))) {
+      await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/sponsor_old_en.png`), false, { recallMsg: 90 })
+      return true
+    } else if (this.e.msg.includes("旧")) {
+      await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/sponsor_old.png`), false, { recallMsg: 90 })
       return true
     } else {
       await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/sponsor.png`), false, { recallMsg: 90 })
