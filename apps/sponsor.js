@@ -11,7 +11,7 @@ export class sponsor extends plugin {
       priority: 10,
       rule: [
         {
-          reg: "^#?(查看|察看)?(赞助名单|赞助列表|赞助感谢名单|赞助感谢列表)$",
+          reg: "^#?(查看|察看)?(全部|所有|总)?(赞助名单|赞助列表|赞助感谢名单|赞助感谢列表)(第)?(.*)?(页|张)?$",
           fnc: "sponsorList"
         },
         {
@@ -23,16 +23,37 @@ export class sponsor extends plugin {
   }
 
   async sponsorList() {
-    await this.e.reply(`赞助名单生成中...若长时间未发送可访问以下链接查看\nhttps://gitee.com/SmallK111407/SponsorList/blob/main/resources/readme/README.md\n若不是最新的名单可发送【#刷新赞助名单】`, true, { recallMsg: 30 })
-    const mdFile = `${_path}/plugins/SponsorList/resources/readme/README.md`
-    logger.debug(`[SponsorList] 查看：${logger.blue(mdFile)}`)
-    if (!(fs.existsSync(mdFile) && fs.statSync(mdFile).isFile())) {
-      await this.reply("无法查看，请检查是否存在README.md", true)
-      return false
+    function chineseToNumber(chinese) {
+      let numbers = {
+        "零": 0,
+        "一": 1,
+        "二": 2,
+        "三": 3,
+        "四": 4,
+        "五": 5
+      }
+      return numbers[chinese]
     }
-    const Markdown = md.render(fs.readFileSync(mdFile, "utf-8"))
-    const img = await puppeteer.screenshot("SponsorList", { tplFile, htmlDir, Markdown })
-    await this.reply(img, true)
+    async function markdown(number) {
+      const mdFile = `${_path}/plugins/SponsorList/resources/markdown/List_${number}.md`
+      const Markdown = md.render(fs.readFileSync(mdFile, "utf-8"))
+      const img = await puppeteer.screenshot("SponsorList", { tplFile, htmlDir, Markdown })
+      await this.e.reply(img, true)
+    }
+    await this.e.reply(`赞助名单生成中...若长时间未发送可访问以下链接查看\nhttps://gitee.com/SmallK111407/SponsorList/blob/main/resources/markdown/Total.md\n若不是最新的名单可发送【#刷新赞助名单】`, true, { recallMsg: 30 })
+    const result = this.e.msg.replace(/查看|察看|赞助名单|赞助列表|赞助感谢名单|赞助感谢列表|第|页|张/g, '')
+    let number = chineseToNumber(String(result))
+    if (number == undefined) return this.e.reply(`当前查看页不存在！`, true, {recallMsg: 60})
+    if (result === "") {
+      await markdown(`1`)
+    } else if (result === "全部" || result === "所有" || result === "总") {
+      const mdFile = `${_path}/plugins/SponsorList/resources/markdown/TotalList.md`
+      const Markdown = md.render(fs.readFileSync(mdFile, "utf-8"))
+      const img = await puppeteer.screenshot("SponsorList", { tplFile, htmlDir, Markdown })
+      await this.e.reply(img, true)
+    } else {
+      await markdown(number)
+    }
   }
   async sponsorImage() {
     if (this.e.msg.includes("英") || (this.e.msg.includes("英") && this.e.msg.includes("旧"))) {
@@ -46,4 +67,5 @@ export class sponsor extends plugin {
       return true
     }
   }
+  function()
 }
