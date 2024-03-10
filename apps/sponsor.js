@@ -41,7 +41,7 @@ export class sponsor extends plugin {
       await this.e.reply(img, true)
     }
     await this.e.reply(`赞助名单生成中...若长时间未发送可访问以下链接查看\nhttps://gitee.com/SmallK111407/SponsorList/blob/main/resources/markdown/Total.md\n若不是最新的名单可发送【#刷新赞助名单】`, true, { recallMsg: 30 })
-    const result = this.e.msg.replace(/查看|察看|赞助名单|赞助列表|赞助感谢名单|赞助感谢列表|第|页|张/g, '')
+    const result = this.e.msg.replace(/#|查看|察看|赞助名单|赞助列表|赞助感谢名单|赞助感谢列表|第|页|张/g, ``)
     if (result === "") {
       await markdown(`1`)
     } else if (["一", "二", "三", "四", "五"].includes(result)) {
