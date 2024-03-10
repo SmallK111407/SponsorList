@@ -23,39 +23,31 @@ export class sponsor extends plugin {
   }
 
   async sponsorList() {
-    function chineseToNumber(chinese) {
-      let numbers = {
-        "零": 0,
-        "一": 1,
-        "二": 2,
-        "三": 3,
-        "四": 4,
-        "五": 5
-      }
-      return numbers[chinese]
-    }
-    async function markdown(number) {
-      const mdFile = `${_path}/plugins/SponsorList/resources/markdown/List_${number}.md`
-      const Markdown = md.render(fs.readFileSync(mdFile, "utf-8"))
-      const img = await puppeteer.screenshot("SponsorList", { tplFile, htmlDir, Markdown })
-      await this.reply(img, true)
-    }
-    await this.e.reply(`赞助名单生成中...若长时间未发送可访问以下链接查看\nhttps://gitee.com/SmallK111407/SponsorList/blob/main/resources/markdown/TotalList.md\n若不是最新的名单可发送【#刷新赞助名单】`, true, { recallMsg: 30 })
     const result = this.e.msg.replace(/#|查看|察看|赞助名单|赞助列表|赞助感谢名单|赞助感谢列表|第|页|张/g, ``)
     if (result === "") {
-      await markdown(`1`)
-    } else if (["一", "二", "三", "四", "五"].includes(result)) {
-      let number = chineseToNumber(String(result))
-      if (number == undefined) return this.e.reply(`当前查看页不存在！`, true, { recallMsg: 60 })
+      await this.e.reply(`赞助名单生成中...若长时间未发送可访问以下链接查看\nhttps://gitee.com/SmallK111407/SponsorList/blob/main/resources/markdown/TotalList.md\n若不是最新的名单可发送【#刷新赞助名单】`, true, { recallMsg: 30 })
+      const mdFile = `${_path}/plugins/SponsorList/resources/markdown/List_1.md`
+      const Markdown = md.render(fs.readFileSync(mdFile, "utf-8"))
+      const img = await puppeteer.screenshot("SponsorList", { tplFile, htmlDir, Markdown })
+      await this.e.reply(img, true)
+      return true
+    } else if ((result === "全部" || result === "所有" || result === "总") && !([`1`, `2`, `3`, `4`, `5`].includes(result))) {
+      await this.e.reply(`赞助名单生成中...若长时间未发送可访问以下链接查看\nhttps://gitee.com/SmallK111407/SponsorList/blob/main/resources/markdown/TotalList.md\n若不是最新的名单可发送【#刷新赞助名单】`, true, { recallMsg: 30 })
+      const mdFile = `${_path}/plugins/SponsorList/resources/markdown/TotalList.md`
+      const Markdown = md.render(fs.readFileSync(mdFile, "utf-8"))
+      const img = await puppeteer.screenshot("SponsorList", { tplFile, htmlDir, Markdown })
+      await this.e.reply(img, true)
+      return true
+    } else if (!(result === "全部" || result === "所有" || result === "总") && ([`1`, `2`, `3`, `4`, `5`].includes(result))) {
+      await this.e.reply(`赞助名单生成中...若长时间未发送可访问以下链接查看\nhttps://gitee.com/SmallK111407/SponsorList/blob/main/resources/markdown/TotalList.md\n若不是最新的名单可发送【#刷新赞助名单】`, true, { recallMsg: 30 })
+      const mdFile = `${_path}/plugins/SponsorList/resources/markdown/List_${result}.md`
+      const Markdown = md.render(fs.readFileSync(mdFile, "utf-8"))
+      const img = await puppeteer.screenshot("SponsorList", { tplFile, htmlDir, Markdown })
+      await this.e.reply(img, true)
+      return true
     } else {
-      if (result === "全部" || result === "所有" || result === "总") {
-        const mdFile = `${_path}/plugins/SponsorList/resources/markdown/TotalList.md`
-        const Markdown = md.render(fs.readFileSync(mdFile, "utf-8"))
-        const img = await puppeteer.screenshot("SponsorList", { tplFile, htmlDir, Markdown })
-        await this.e.reply(img, true)
-      } else {
-        await markdown(number)
-      }
+      await this.e.reply(`传入了错误的数据~`, true, { recallMsg: 60 })
+      return true
     }
   }
   async sponsorImage() {
