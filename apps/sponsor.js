@@ -31,14 +31,14 @@ export class sponsor extends plugin {
       const img = await puppeteer.screenshot("SponsorList", { tplFile, htmlDir, Markdown })
       await this.e.reply(img, true)
       return true
-    } else if ((result === "全部" || result === "所有" || result === "总") && !([`1`, `2`, `3`, `4`, `5`].includes(result))) {
+    } else if ((result === "全部" || result === "所有" || result === "总") && !([`1`, `2`, `3`, `4`, `5`, `6`].includes(result))) {
       await this.e.reply(`赞助名单生成中...若长时间未发送可访问以下链接查看\nhttps://gitee.com/SmallK111407/SponsorList/blob/main/resources/markdown/TotalList.md\n若不是最新的名单可发送【#刷新赞助名单】`, true, { recallMsg: 30 })
       const mdFile = `${_path}/plugins/SponsorList/resources/markdown/TotalList.md`
       const Markdown = md.render(fs.readFileSync(mdFile, "utf-8"))
       const img = await puppeteer.screenshot("SponsorList", { tplFile, htmlDir, Markdown })
       await this.e.reply(img, true)
       return true
-    } else if (!(result === "全部" || result === "所有" || result === "总") && ([`1`, `2`, `3`, `4`, `5`].includes(result))) {
+    } else if (!(result === "全部" || result === "所有" || result === "总") && ([`1`, `2`, `3`, `4`, `5`, `6`].includes(result))) {
       await this.e.reply(`赞助名单生成中...若长时间未发送可访问以下链接查看\nhttps://gitee.com/SmallK111407/SponsorList/blob/main/resources/markdown/TotalList.md\n若不是最新的名单可发送【#刷新赞助名单】`, true, { recallMsg: 30 })
       const mdFile = `${_path}/plugins/SponsorList/resources/markdown/List_${result}.md`
       const Markdown = md.render(fs.readFileSync(mdFile, "utf-8"))
