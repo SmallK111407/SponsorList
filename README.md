@@ -1,8 +1,8 @@
 # SponsorList
 
-[点此处查看赞助名单](./resources/readme/README.md)
+[点此处查看赞助名单](./resources/markdown/TotalList.md)
 
-[戳我跳转至曉K爱发电](https://afdian.net/a/SunRyK)
+[戳我跳转至曉K爱发电](https://afdian.com/a/SunRyK)
 
 **本项目遵循[MIT](./LICENSE)开源协议**
 
