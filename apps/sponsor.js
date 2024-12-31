@@ -15,7 +15,7 @@ export class sponsor extends plugin {
           fnc: "sponsorList"
         },
         {
-          reg: "^#?(我要|我想)?(赞助|资助|zz)(旧|旧版)?(英|英语)?$",
+          reg: "^#?(我要|我想)?(赞助|资助|zz)(微信|支付宝|qq|QQ|爱发电)?$",
           fnc: "sponsorImage"
         }
       ]
@@ -51,14 +51,20 @@ export class sponsor extends plugin {
     }
   }
   async sponsorImage() {
-    if (this.e.msg.includes("英") || (this.e.msg.includes("英") && this.e.msg.includes("旧"))) {
-      await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/sponsor_old_en.png`), false, { recallMsg: 90 })
+    if (this.e.msg.includes("微信")) {
+      await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/赞助微信.png`), false, { recallMsg: 90 })
       return true
-    } else if (this.e.msg.includes("旧")) {
-      await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/sponsor_old.png`), false, { recallMsg: 90 })
+    } else if (this.e.msg.includes("支付宝")) {
+      await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/赞助支付宝.png`), false, { recallMsg: 90 })
+      return true
+    } else if (this.e.msg.includes("QQ") || this.e.msg.includes("qq")) {
+      await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/赞助QQ.png`), false, { recallMsg: 90 })
+      return true
+    } else if (this.e.msg.includes("爱发电")) {
+      await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/赞助爱发电.png`), false, { recallMsg: 90 })
       return true
     } else {
-      await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/sponsor.png`), false, { recallMsg: 90 })
+      await this.e.reply(segment.image(`${_path}/plugins/SponsorList/resources/image/赞助.png`), false, { recallMsg: 90 })
       return true
     }
   }
